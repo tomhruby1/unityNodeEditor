@@ -18,7 +18,7 @@ public class NodeCondition
 
     public List<int> selected = new List<int>();    //selected option
     //TODO: should not be hardcoded - get levelState variables offline from SO
-    public string[] options = LevelState.instance.levelVariables.ToArray();/* new string[4] { 
+    public string[] options = NodeEditor.state.levelVariables.ToArray();/* new string[4] { 
             "Generator", "Cable", "Cable2","Light" };*/    
     
     public List<string> value = new List<string>();

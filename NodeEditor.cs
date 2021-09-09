@@ -24,6 +24,7 @@ public class NodeEditor : EditorWindow, ISerializationCallbackReceiver
 
 
     public LevelDAG levelDAG;
+    public static LevelState state;
 
     [MenuItem("Window/Node Editor")]
     private static void OpenWindow()
@@ -297,7 +298,7 @@ public class NodeEditor : EditorWindow, ISerializationCallbackReceiver
             nodes = new List<Node>();
         }
 
-        nodes.Add(new StartNode(mousePosition, 250, 50, nodeStyle, selectedNodeStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode));
+        nodes.Add(new StartNode(mousePosition, 250, 100, nodeStyle, selectedNodeStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode));
         levelDAG =  LevelDAG.CreateLevelDAG();
         EditorUtility.SetDirty(levelDAG);   //??
     }
@@ -596,7 +597,7 @@ public class NodeEditor : EditorWindow, ISerializationCallbackReceiver
                 {
 
                 }
-                int stateVal = LevelState.instance.GetValue(stateVar);
+                int stateVal = state.GetValue(stateVar);
                 int ival = Int32.Parse(val);
 
                 //setup selected stateVar

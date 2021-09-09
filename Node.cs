@@ -166,11 +166,10 @@ public class BasicNode : Node
 
     public override void Draw()
     {
-        levelComponentNames = new List<string>(LevelState.instance.state.Keys).ToArray();   //rewrite componentNames to currently available LevelState variables for conditions 
-        //TODO: levelCompNames asi jinam
+        //rewrite componentNames to currently available LevelState variables for conditions 
+        //levelComponentNames = new List<string>(LevelState.instance.state.Keys).ToArray();   
 
         rect.height = outConditions.Count * conditionOffset + nodeHeaderHeight + conditionOffset;
-
 
         inPoint.DrawIn();
         //actions box
@@ -284,7 +283,8 @@ public class StartNode : Node
 {
     public ConnectionPoint outPoint;
     private Action<ConnectionPoint> OnClickOutPoint;
-    
+    private float fieldRectWidth = 200f;
+
     //private static LevelState instance = null; TODO sigleton
 
     public StartNode(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle,GUIStyle outPointStyle, 
@@ -319,7 +319,15 @@ public class StartNode : Node
         GUI.Box(rect, "", style);
         //node title
         GUI.Label(new Rect(rect.x + rect.width / 4, rect.y + 2.5f, rect.width / 2, 20), name, nodeTitleStyle);
-   
+        //Load level state for state var options
+        GUI.Label(new Rect(rect.x + 10f, rect.y + 35f, rect.width / 2, 20), "LevelState:");
+        Rect position = new Rect(rect.x + 80f, rect.y + 35f, fieldRectWidth - 55, 20);
+        NodeEditor.state = (LevelState)EditorGUI.ObjectField(position, NodeEditor.state, typeof(LevelState), true);
+        //Load LevelDag
+        GUI.Label(new Rect(rect.x + 10f, rect.y + 60f, rect.width / 2, 20), "LevelDAG:");
+        position = new Rect(rect.x + 80f, rect.y + 60f, fieldRectWidth - 55, 20);
+        NodeEditor.state = (LevelState)EditorGUI.ObjectField(position, NodeEditor.state, typeof(LevelState), true);
+
         outPoint.DrawOut();
 
     }

@@ -266,20 +266,24 @@ public class LevelDAG : ScriptableObject
         string path = "assets/scenes/" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "/levelDAG.json";
         File.WriteAllText(path, json);
         Debug.Log(json);
-        Debug.Log("Saving SO");
         //SaveSO();
     }
 
     public void SaveSO()
     {
+        Debug.Log("Saving SO");
+
         LevelDAG asset = this;
 
         AssetDatabase.CreateAsset(asset, "assets/scenes/" + /*UnityEngine.SceneManagement.SceneManager.GetActiveScene().name*/ "SampleScene" + "/levelDAG.asset");
+        /*
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();
 
         Selection.activeObject = asset;
+        */
+        //ScriptableObjectUtility.CreateAsset<LevelDAGNode>();
     }
 
     public void Load()
